@@ -1,6 +1,6 @@
-# Partvision's ReSkate Trainer â€” 0.3.0 preview 1
+# Partvision's ReSkate Trainer â€” 0.4.0 preview 1
 
-Visual and Performance development preview for ReSkate 1.0.6 and Skate Steam build 25414733.
+Tricks and UI development preview for ReSkate 1.0.6 and Skate Steam build 25414733.
 
 ## Install or upgrade
 
@@ -12,7 +12,33 @@ Visual and Performance development preview for ReSkate 1.0.6 and Skate Steam bui
 The installer uses `C:\Program Files (x86)\Steam\steamapps\common\Skate`, verifies the game executable, and backs up your current DLL and launcher to a timestamped folder in `EarlyTrainerBackups` before replacing them. If 0.1 is installed, that working build becomes the backup. Do not install this through the Mods tab: it is a custom ReSkate DLL and matching launcher. Existing game data and Mods folders are not changed.
 
 
-## New in this build
+## 0.4 preview 1 — new controls
+
+This starts 0.4; it does not complete every item in the milestone.
+
+Player > 0.4 Tricks:
+- Footplant Speed: scales standstill launch speed and launch speed limit, 0.25–3x. Animation speed is unchanged.
+- Footplant Height: scales upward takeoff velocity, 0.25–3x. This is launch power, not a measured height multiplier.
+- Infinite Footplanting (experimental): sets pop-decay multiplier to 1. Infinite chaining is not verified.
+- Allow Multiple Body Flips: clears the perfect-body-flips single-rotation constraint. The supported game's default is already off, so enabling it may make no difference. Board kickflips are separate.
+- Body Flip Speed: scales flip strength and speed limit, 0.25–3x.
+- Body Spin Speed: scales four body-spin response graphs plus auto-spin speed limit, 0.25–3x.
+
+All six use named fields from the supported game's physics asset. Their visible gameplay effects have NOT been verified in-game. Unsupported mappings disable the corresponding control.
+
+Player > Slingshot: one forward and one upward native boost. Forward strength 1–50 m/s, upward strength 1–25 m/s. Solo-only, on-board, UI button only. Requires native boost availability. Reset does not reverse velocity already added.
+
+Home: persisted UI scale 75–150%, player activation count. Player: independent native-value restore buttons and OVERRIDE indicators for new tuning controls. New trick keyboard bindings default to unbound; assign them under Keybinds and presets, including Hold/Toggle. Slingshot and controller bindings remain UI-only/pending respectively.
+
+Physics ownership now captures each feature's fields independently, restores only those fields, and refreshes the skater cache on a new skater identity. Config schema 3 loads the old schema 2 values and bindings. Presets include new trick values, bindings and UI scale. Enable switches still start off each launch. Flight speed now uses ReSkate's supported presets instead of arbitrary unsupported numbers.
+
+Automated checks: 116 mapped fields in seven groups (including ollie), exact individual/full reset, fresh baseline capture, untouched unrelated bytes, unavailable mapping rejection; config migration/roundtrip and binding conflicts; all six pages at 75/100/150% scale. These checks do not verify native movement after a real respawn or map change.
+
+Remaining 0.4: Off-Board Speed, verified Off-Board Jump Height, Air Control, Gravity Multiplier, board-flip behavior, more modified indicators/reset coverage, controller bindings and in-game regression testing. The earlier off-board jump assistance remains experimental.
+
+Suggested playtest: start in solo on level ground. Try one new tuning control at a time, restore it and compare. Then combine footplant and spin tuning and restore only one. Test emergency reset, respawn and map change. Close and relaunch to confirm values persist while switches start off.
+
+## Previous 0.3 additions
 
 Visual: native freecam toggle, freecam FOV 40-120 (0 restores game FOV), film grain, vignette and chromatic aberration with Default/Off/On choices. Camera requests use ReSkate's existing scheduler; live state and native status are shown. Effects and FOV use ReSkate's saved preferences, separate from player presets.
 
@@ -84,7 +110,7 @@ Close the game and launcher. Open the timestamped backup directory created by th
 
 This build compiled successfully. Automated checks passed for all six tabs with ImGui assertions enabled, settings serialization, invalid settings, binding conflicts, input suppression/rearming, jump measurements, teleport/respawn resets, off-board trigger detection, and height graph scaling against your installed game data. Home and Player layouts were visually inspected using the rendered ImGui draw data.
 
-**This 0.3 preview has not been playtested inside Skate.** The 0.1 menu and ollie change worked in your playtest; the new features still need runtime verification. Start on flat ground: check F6 and the height readout, hold/release F7 and F8, toggle F9 off/on, then try the experimental F10 control. Test End, a respawn, a map change and a session transition before relying on the build.
+**This 0.4 preview has not been playtested inside Skate.** The 0.1 menu and ollie change worked in your playtest; the new features still need runtime verification. Start on flat ground: check F6 and the height readout, hold/release F7 and F8, toggle F9 off/on, then try the experimental F10 control. Test End, a respawn, a map change and a session transition before relying on the build.
 
 ## Credits, source and license
 
@@ -94,4 +120,4 @@ Created for Partvision; menu and integration developed with OpenAI Codex.
 - Andrew Nakas's ReSkate Trainer: https://github.com/andrewnakas/reskate-trainer â€” physics name/access helpers, state observation and off-board velocity helpers adapted from commit `013d131c692d009bf118bd788a583345f6abbaa4`.
 - Dear ImGui supplies the UI renderer.
 
-GPL-3.0; see LICENSE. Complete corresponding source and `BUILD-PARTVISION.md` are included in `Partvision-ReSkate-Trainer-0.3-preview1-source.zip`.
+GPL-3.0; see LICENSE. Complete corresponding source and `BUILD-PARTVISION.md` are included in `Partvision-ReSkate-Trainer-0.4-preview1-source.zip`.

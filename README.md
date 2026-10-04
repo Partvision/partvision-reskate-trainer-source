@@ -1,10 +1,10 @@
 # Partvision's ReSkate Trainer
 
-Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.3.0-preview1**.
+Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview1**.
 
 ## Downloads
 
-- [Installer package — 0.3 preview](Partvision-ReSkate-Trainer-0.3-preview1.zip)
+- [Installer package — 0.3 preview](Partvision-ReSkate-Trainer-0.4-preview1.zip)
 - [Complete corresponding source](Partvision-ReSkate-Trainer-source.zip)
 - [Installation, controls and limitations](INSTALL.md)
 - [Windows build instructions](BUILD-PARTVISION.md)
@@ -13,13 +13,15 @@ The source archive contains the complete modified ReSkate project, trainer code,
 
 ## Current features
 
+New 0.4: experimental footplant launch tuning, pop preservation, body flips/spins, a one-shot slingshot, independent resets and UI scaling.
+
 Home-key ImGui menu with six tabs; ollie power, slow motion, speed boost, noclip/fly, experimental off-board jump assistance, keybinds and presets; freecam, freecam FOV 40–120, film grain, vignette and chromatic aberration; FPS comparison, shadow maps and five category-specific cull distances.
 
 Player overrides are solo-only. Local rendering controls are intended to work in multiplayer, but server behavior has not been playtested. This preview passed build and automated UI checks; in-game validation remains pending.
 
 ## New roadmap
 
-[ROADMAP.md](ROADMAP.md) defines the updated 0.4–1.0 plan. Next: Tricks & Movement plus UI scale, modified-value indicators and individual resets. Controller cameras, visuals, physics, server capabilities, gameplay overlays and controller UI follow in later milestones. Planned features are not yet implemented.
+[ROADMAP.md](ROADMAP.md) defines the updated 0.4–1.0 plan. 0.4 is now in progress: the first Tricks & Movement controls, UI scaling and per-feature resets are in the preview. Off-Board Speed, general Gravity Multiplier, Air Control, broader reset/indicator coverage and in-game validation remain pending. Controller cameras, visuals, physics, server capabilities, gameplay overlays and controller UI follow in later milestones. Planned features are not yet implemented.
 
 ## Credits and license
 
