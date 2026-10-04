@@ -4,7 +4,7 @@ Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.
 
 ## Downloads
 
-- [Installer package — 0.3 preview](Partvision-ReSkate-Trainer-0.4-preview1.zip)
+- [Installer package — 0.4 preview](Partvision-ReSkate-Trainer-0.4-preview1.zip)
 - [Complete corresponding source](Partvision-ReSkate-Trainer-source.zip)
 - [Installation, controls and limitations](INSTALL.md)
 - [Windows build instructions](BUILD-PARTVISION.md)
