@@ -1,4 +1,4 @@
-# Partvision's ReSkate Trainer â€” 0.4.0 preview 2
+# Partvision's ReSkate Trainer - 0.4.0 preview 3
 
 Tricks and UI development preview for ReSkate 1.0.6 and Skate Steam build 25414733.
 
@@ -12,7 +12,19 @@ Tricks and UI development preview for ReSkate 1.0.6 and Skate Steam build 254147
 The installer uses `C:\Program Files (x86)\Steam\steamapps\common\Skate`, verifies the game executable, and backs up your current DLL and launcher to a timestamped folder in `EarlyTrainerBackups` before replacing them. If 0.1 is installed, that working build becomes the backup. Do not install this through the Mods tab: it is a custom ReSkate DLL and matching launcher. Existing game data and Mods folders are not changed.
 
 
-## Preview 2 fixes
+## Force No Fall
+
+Player now includes **Force No Fall**, using ReSkate's local No Bail protection. The goal is to stay on the board through impacts and bad landings, like the requested Skate 3 behavior. Native hooks filter bail causes (including inline collision/landing causes), impact and animation wipeout requests, direct wipeout state selection, and sensitive body-contact reports. Exact all-impact parity has not been playtested.
+
+Enable it before testing a wall collision, traffic hit, hard landing or failed trick. Recover first if already fallen. Ordinary skating transitions and manually getting off the board remain native. This trainer switch is solo-only; it follows the existing native availability checks.
+
+The switch starts off. Its optional keybind defaults to Unbound; configure Hold or Toggle in **Keybinds and presets**. Values and bindings from previews 1/2 migrate without changing Home, End or existing movement bindings. Settings now use schema 4 and load schema 2/3/4.
+
+**Reset No Fall**, turning the switch off, or **End** restores the native no-bail preference captured before enabling it. A pre-existing native No Bail setting or active noclip can still protect you independently; the UI reports that. Native debug preferences can remain saved if you exit without resetting, so turn the switch off before closing to restore its previous preference.
+
+Automated checks cover ownership, queue retries, quick enable/disable/re-enable while requests are pending, failed restoration requests, restoring pre-existing protection, legacy keybind migration and saved new bindings. The native game behavior has not been playtested for this build.
+
+## Preview 3 fixes
 
 Ground FS Fastplant / boneless tuning:
 - Footplant Speed now scales the native Boneless outgoing planar-speed graph and its active FloatCurve. Preview 1 changed different footplant launch fields.
@@ -81,9 +93,9 @@ Feature checkboxes provide persistent activation until switched off; a hold key 
 
 ## Feature details
 
-**Ollie Power:** 0.25â€“10x tuning strength. The earlier 0.1 slider did not represent a true height multiplier; this is now labelled accurately. Both minimum and maximum ollie-height-versus-speed graphs are scaled. Reset restores the captured pre-trainer values. Measure comparable flat-ground jumps at the same speed using the last-jump readout. It can affect other tricks that use the same pop graphs.
+**Ollie Power:** 0.25–10x tuning strength. The earlier 0.1 slider did not represent a true height multiplier; this is now labelled accurately. Both minimum and maximum ollie-height-versus-speed graphs are scaled. Reset restores the captured pre-trainer values. Measure comparable flat-ground jumps at the same speed using the last-jump readout. It can affect other tricks that use the same pop graphs.
 
-**Slow motion:** 0.10â€“1.00x simulation time using ReSkate's existing named setting. The applied scale/status is shown. Disabling restores the captured prior time scale. Session changes also use ReSkate's existing multiplayer setting rules.
+**Slow motion:** 0.10–1.00x simulation time using ReSkate's existing named setting. The applied scale/status is shown. Disabling restores the captured prior time scale. Session changes also use ReSkate's existing multiplayer setting rules.
 
 **Speed boost:** configurable burst strength and speed cutoff. Held/toggled boost repeats every 0.3 seconds; Single burst fires once. Uses ReSkate's on-board forward boost. Cutoff uses wall-clock position samples and is not a strict maximum-speed limiter, particularly during slow motion.
 
@@ -117,8 +129,8 @@ This build compiled successfully. Automated checks passed for all six tabs with 
 
 Created for Partvision; menu and integration developed with OpenAI Codex.
 
-- ReSkate 1.0.6: https://github.com/Dingo-Shenanigans/ReSkate â€” base commit `f815658bf1833ef0580fc87ea1758bfd91ddb361`.
-- Andrew Nakas's ReSkate Trainer: https://github.com/andrewnakas/reskate-trainer â€” physics name/access helpers, state observation and off-board velocity helpers adapted from commit `013d131c692d009bf118bd788a583345f6abbaa4`.
+- ReSkate 1.0.6: https://github.com/Dingo-Shenanigans/ReSkate — base commit `f815658bf1833ef0580fc87ea1758bfd91ddb361`.
+- Andrew Nakas's ReSkate Trainer: https://github.com/andrewnakas/reskate-trainer — physics name/access helpers, state observation and off-board velocity helpers adapted from commit `013d131c692d009bf118bd788a583345f6abbaa4`.
 - Dear ImGui supplies the UI renderer.
 
 GPL-3.0; see LICENSE. Complete corresponding source and `BUILD-PARTVISION.md` are included in `Partvision-ReSkate-Trainer-0.4-preview2-source.zip`.

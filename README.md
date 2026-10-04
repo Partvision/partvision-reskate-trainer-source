@@ -1,10 +1,10 @@
 # Partvision's ReSkate Trainer
 
-Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview2**.
+Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview3**.
 
 ## Downloads
 
-- [Installer package — 0.4 preview 2](Partvision-ReSkate-Trainer-0.4-preview2.zip)
+- [Installer package — 0.4 preview 3](Partvision-ReSkate-Trainer-0.4-preview3.zip)
 - [Complete corresponding source](Partvision-ReSkate-Trainer-source.zip)
 - [Installation, controls and limitations](INSTALL.md)
 - [Windows build instructions](BUILD-PARTVISION.md)
@@ -12,6 +12,8 @@ Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.
 The source archive contains the complete modified ReSkate project, trainer code, build files, dependency sources, license notices and roadmap. Extract it before building. The source is currently stored as an archive in this repository.
 
 ## Current features
+
+Preview 3 adds Force No Fall to Player using native No Bail protection, an optional Hold/Toggle keybind and reset that restores the prior preference. Existing bindings migrate. Collision, hard-landing and failed-trick behavior still needs an in-game test.
 
 Preview 2 fixes ground FS Fastplant/boneless speed and height tuning, including the active speed curve. Right-click movement sliders to enter custom values above their drag ranges. Automated checks pass; in-game verification remains pending.
 
