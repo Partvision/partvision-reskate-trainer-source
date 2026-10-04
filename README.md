@@ -1,10 +1,10 @@
 # Partvision's ReSkate Trainer
 
-Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview1**.
+Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview2**.
 
 ## Downloads
 
-- [Installer package — 0.4 preview](Partvision-ReSkate-Trainer-0.4-preview1.zip)
+- [Installer package — 0.4 preview 2](Partvision-ReSkate-Trainer-0.4-preview2.zip)
 - [Complete corresponding source](Partvision-ReSkate-Trainer-source.zip)
 - [Installation, controls and limitations](INSTALL.md)
 - [Windows build instructions](BUILD-PARTVISION.md)
@@ -12,6 +12,8 @@ Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.
 The source archive contains the complete modified ReSkate project, trainer code, build files, dependency sources, license notices and roadmap. Extract it before building. The source is currently stored as an archive in this repository.
 
 ## Current features
+
+Preview 2 fixes ground FS Fastplant/boneless speed and height tuning, including the active speed curve. Right-click movement sliders to enter custom values above their drag ranges. Automated checks pass; in-game verification remains pending.
 
 New 0.4: experimental footplant launch tuning, pop preservation, body flips/spins, a one-shot slingshot, independent resets and UI scaling.
 
@@ -28,3 +30,5 @@ Player overrides are solo-only. Local rendering controls are intended to work in
 Created for Partvision with OpenAI Codex. Based on ReSkate by Dingo-Shenanigans, v1.0.6 / commit `f815658bf1833ef0580fc87ea1758bfd91ddb361`. Physics and off-board helper adaptations come from Andrew Nakas's ReSkate Trainer. Uses Dear ImGui and bundled dependencies under their respective licenses.
 
 GPL-3.0; see [LICENSE](LICENSE). Full dependency notices and upstream documentation are in the source archive. This is an unofficial fan project, not affiliated with Electronic Arts or Full Circle. You need your own copy of Skate.
+
+

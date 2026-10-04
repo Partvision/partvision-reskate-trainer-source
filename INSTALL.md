@@ -1,4 +1,4 @@
-# Partvision's ReSkate Trainer — 0.4.0 preview 1
+# Partvision's ReSkate Trainer â€” 0.4.0 preview 2
 
 Tricks and UI development preview for ReSkate 1.0.6 and Skate Steam build 25414733.
 
@@ -12,31 +12,32 @@ Tricks and UI development preview for ReSkate 1.0.6 and Skate Steam build 254147
 The installer uses `C:\Program Files (x86)\Steam\steamapps\common\Skate`, verifies the game executable, and backs up your current DLL and launcher to a timestamped folder in `EarlyTrainerBackups` before replacing them. If 0.1 is installed, that working build becomes the backup. Do not install this through the Mods tab: it is a custom ReSkate DLL and matching launcher. Existing game data and Mods folders are not changed.
 
 
-## 0.4 preview 1 � new controls
+## Preview 2 fixes
 
-This starts 0.4; it does not complete every item in the milestone.
+Ground FS Fastplant / boneless tuning:
+- Footplant Speed now scales the native Boneless outgoing planar-speed graph and its active FloatCurve. Preview 1 changed different footplant launch fields.
+- Footplant Height now scales the Boneless jump-height-versus-planar-speed graph.
+- Curve Y coordinates and tangent Y offsets scale together; X coordinates, curve domain and interpolation types stay unchanged.
+- Disabling either feature restores its captured fields and curves independently.
 
-Player > 0.4 Tricks:
-- Footplant Speed: scales standstill launch speed and launch speed limit, 0.25�3x. Animation speed is unchanged.
-- Footplant Height: scales upward takeoff velocity, 0.25�3x. This is launch power, not a measured height multiplier.
-- Infinite Footplanting (experimental): sets pop-decay multiplier to 1. Infinite chaining is not verified.
-- Allow Multiple Body Flips: clears the perfect-body-flips single-rotation constraint. The supported game's default is already off, so enabling it may make no difference. Board kickflips are separate.
-- Body Flip Speed: scales flip strength and speed limit, 0.25�3x.
-- Body Spin Speed: scales four body-spin response graphs plus auto-spin speed limit, 0.25�3x.
+These controls target ground fastplants, including the reported ground FS Fastplant. They do not speed up the animation. Compare on level ground at the same nonzero approach speed. Start with one control at 2x, restore it, then test the other. Gameplay effects still need an in-game playtest of this build.
 
-All six use named fields from the supported game's physics asset. Their visible gameplay effects have NOT been verified in-game. Unsupported mappings disable the corresponding control.
+Right-click any trainer movement slider to open a number editor. Enter commits; Apply also commits; Cancel or Escape discards the draft. Invalid, non-finite and out-of-range entries do not apply.
 
-Player > Slingshot: one forward and one upward native boost. Forward strength 1�50 m/s, upward strength 1�25 m/s. Solo-only, on-board, UI button only. Requires native boost availability. Reset does not reverse velocity already added.
+| Control | Drag range | Manual range |
+| --- | --- | --- |
+| Ground fastplant / body flip / body spin factors | 0.25-3x | 0.25-1000x |
+| Ollie Power | 0.25-10x | 0.25-1000x |
+| Off-board Jump factor | 0.25-5x | 0.25-20x |
+| Boost cutoff | 5-150 m/s | 5-1000 m/s |
 
-Home: persisted UI scale 75�150%, player activation count. Player: independent native-value restore buttons and OVERRIDE indicators for new tuning controls. New trick keyboard bindings default to unbound; assign them under Keybinds and presets, including Hold/Toggle. Slingshot and controller bindings remain UI-only/pending respectively.
+Custom values remain visible and survive redraw, saving, relaunch and preset loading. Native boost/slingshot bounds, UI scale and time-scale bounds retain their existing limits. Noclip uses its supported speed presets. Freecam FOV and engine render-distance editors retain their existing controls.
 
-Physics ownership now captures each feature's fields independently, restores only those fields, and refreshes the skater cache on a new skater identity. Config schema 3 loads the old schema 2 values and bindings. Presets include new trick values, bindings and UI scale. Enable switches still start off each launch. Flight speed now uses ReSkate's supported presets instead of arbitrary unsupported numbers.
+Other 0.4 controls: experimental Infinite Footplanting (pop-decay removal), Allow Multiple Body Flips, Body Flip Speed, Body Spin Speed, one-shot Slingshot, Home UI scale, individual feature resets and OVERRIDE indicators. Infinite chaining and native trick effects remain unverified. New trick bindings default to unbound; configure Hold/Toggle under Keybinds and presets. Player overrides remain solo-only.
 
-Automated checks: 116 mapped fields in seven groups (including ollie), exact individual/full reset, fresh baseline capture, untouched unrelated bytes, unavailable mapping rejection; config migration/roundtrip and binding conflicts; all six pages at 75/100/150% scale. These checks do not verify native movement after a real respawn or map change.
+Automated checks: 149 mapped fields plus the active ground-speed curve; exact individual/full reset; fresh baseline capture for fields and curves; unrelated-byte and unrelated-curve preservation; curve domain/X/type preservation; unsupported mapping rejection; custom number persistence; real ImGui right-click/text/Enter interaction, invalid-entry rejection and Escape cancel; six pages at 75/100/150% scale. Runtime and launcher compile in Windows x64 Release. In-game playtest: not run.
 
-Remaining 0.4: Off-Board Speed, verified Off-Board Jump Height, Air Control, Gravity Multiplier, board-flip behavior, more modified indicators/reset coverage, controller bindings and in-game regression testing. The earlier off-board jump assistance remains experimental.
-
-Suggested playtest: start in solo on level ground. Try one new tuning control at a time, restore it and compare. Then combine footplant and spin tuning and restore only one. Test emergency reset, respawn and map change. Close and relaunch to confirm values persist while switches start off.
+Remaining 0.4: Off-Board Speed, verified Off-Board Jump Height, Air Control, Gravity Multiplier, board-flip behavior, broader reset coverage, controller bindings and in-game regression testing.
 
 ## Previous 0.3 additions
 
@@ -80,9 +81,9 @@ Feature checkboxes provide persistent activation until switched off; a hold key 
 
 ## Feature details
 
-**Ollie Power:** 0.25–10x tuning strength. The earlier 0.1 slider did not represent a true height multiplier; this is now labelled accurately. Both minimum and maximum ollie-height-versus-speed graphs are scaled. Reset restores the captured pre-trainer values. Measure comparable flat-ground jumps at the same speed using the last-jump readout. It can affect other tricks that use the same pop graphs.
+**Ollie Power:** 0.25â€“10x tuning strength. The earlier 0.1 slider did not represent a true height multiplier; this is now labelled accurately. Both minimum and maximum ollie-height-versus-speed graphs are scaled. Reset restores the captured pre-trainer values. Measure comparable flat-ground jumps at the same speed using the last-jump readout. It can affect other tricks that use the same pop graphs.
 
-**Slow motion:** 0.10–1.00x simulation time using ReSkate's existing named setting. The applied scale/status is shown. Disabling restores the captured prior time scale. Session changes also use ReSkate's existing multiplayer setting rules.
+**Slow motion:** 0.10â€“1.00x simulation time using ReSkate's existing named setting. The applied scale/status is shown. Disabling restores the captured prior time scale. Session changes also use ReSkate's existing multiplayer setting rules.
 
 **Speed boost:** configurable burst strength and speed cutoff. Held/toggled boost repeats every 0.3 seconds; Single burst fires once. Uses ReSkate's on-board forward boost. Cutoff uses wall-clock position samples and is not a strict maximum-speed limiter, particularly during slow motion.
 
@@ -116,8 +117,8 @@ This build compiled successfully. Automated checks passed for all six tabs with 
 
 Created for Partvision; menu and integration developed with OpenAI Codex.
 
-- ReSkate 1.0.6: https://github.com/Dingo-Shenanigans/ReSkate — base commit `f815658bf1833ef0580fc87ea1758bfd91ddb361`.
-- Andrew Nakas's ReSkate Trainer: https://github.com/andrewnakas/reskate-trainer — physics name/access helpers, state observation and off-board velocity helpers adapted from commit `013d131c692d009bf118bd788a583345f6abbaa4`.
+- ReSkate 1.0.6: https://github.com/Dingo-Shenanigans/ReSkate â€” base commit `f815658bf1833ef0580fc87ea1758bfd91ddb361`.
+- Andrew Nakas's ReSkate Trainer: https://github.com/andrewnakas/reskate-trainer â€” physics name/access helpers, state observation and off-board velocity helpers adapted from commit `013d131c692d009bf118bd788a583345f6abbaa4`.
 - Dear ImGui supplies the UI renderer.
 
-GPL-3.0; see LICENSE. Complete corresponding source and `BUILD-PARTVISION.md` are included in `Partvision-ReSkate-Trainer-0.4-preview1-source.zip`.
+GPL-3.0; see LICENSE. Complete corresponding source and `BUILD-PARTVISION.md` are included in `Partvision-ReSkate-Trainer-0.4-preview2-source.zip`.
