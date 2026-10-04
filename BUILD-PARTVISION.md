@@ -1,4 +1,4 @@
-# Partvision ReSkate Trainer 0.4.0 preview 4
+# Partvision ReSkate Trainer 0.4.0 preview 5
 
 Use a Visual Studio x64 Developer Command Prompt with C++ tools, Windows SDK, CMake and Ninja.
 
@@ -11,7 +11,7 @@ build\early\early_trainer_ui_check.exe
 build\early\dingosdk_physics_tuning_tests.exe "C:\Program Files (x86)\Steam\steamapps\common\Skate"
 ```
 
-Build inside the source tree; upstream source_group expects this. The runtime and launcher use the 1.0.6 base version; the trainer displays 0.4.0-preview4.
+Build inside the source tree; upstream source_group expects this. The runtime and launcher use the 1.0.6 base version; the trainer displays 0.4.0-preview5.
 
 The UI test uses a separate ImGui library with assertions enabled. It defaults to Arial from C:/Windows/Fonts; an optional directory argument exports Home and Player draw geometry for layout inspection.
 

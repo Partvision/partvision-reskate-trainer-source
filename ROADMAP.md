@@ -422,3 +422,10 @@ Keeping these systems separate allows each one to be designed specifically for i
 Player is grouped into Tricks, Movement, Off-board and Physics. Native off-board desired speed, local movement gravity and horizontal air steering are implemented as experimental solo controls with values, bindings and individual reset. No Fall adds 26 landing/collision tuning overrides to native bail filtering. Off-board jump height now uses a native ground-to-falling edge rather than wall-clock movement detection.
 
 The release gate remains open: animation/trajectory off-board jumps and repeated board kickflips still need implementation, infinite footplant chaining needs verification, and new native behavior needs in-game collision/landing/respawn testing. The body-flip constraint's supported default is already off. Build/config/field reset/UI and movement-math checks pass; they do not replace a game test. Full controller feature bindings/menu navigation remain later work.
+
+
+## 0.4 development status - preview 5
+
+Fixed the movement adapter's write/verify ordering: it verified old snapshots after its own writes, then immediately rolled them back. The corrected path verifies ownership and captured values before applying the temporary speed/gravity patch, lets the native update consume it, then restores only values it still owns. A test using the actual SourceReader reproduces preview 4's failure and checks the real patch around a consumer for 100 calls.
+
+Applied indicators retain local feedback across unrelated physics cores and reflect writes within the last half-second. Jump feedback is now connected to successful takeoffs; per-control state/wait reasons and the local physics step count are visible. Air steering uses the local context's current state rather than the last observed selector result. Animation/trajectory off-board jumps remain unsupported and are reported explicitly. In-game movement/collision validation remains open.

@@ -1,10 +1,10 @@
 # Partvision's ReSkate Trainer
 
-Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview4**.
+Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview5**.
 
 ## Downloads
 
-- [Installer package — 0.4 preview 4](Partvision-ReSkate-Trainer-0.4-preview4.zip)
+- [Installer package — 0.4 preview 5](Partvision-ReSkate-Trainer-0.4-preview5.zip)
 - [Complete corresponding source](Partvision-ReSkate-Trainer-source.zip)
 - [Installation, controls and limitations](INSTALL.md)
 - [Windows build instructions](BUILD-PARTVISION.md)
@@ -12,6 +12,8 @@ Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.
 The source archive contains the complete modified ReSkate project, trainer code, build files, dependency sources, license notices and roadmap. Extract it before building. The source is currently stored as an archive in this repository.
 
 ## Current features
+
+Preview 5 fixes Off-board Speed / Gravity cancelling their own native writes, prevents unrelated physics cores from clearing local feedback, uses current local state for air control, and fixes the jump indicator. Per-control wait reasons and physics-step counts are now shown. The new native-memory regression reproduces the old bug and verifies corrected consumption/restoration. Gameplay validation is still pending; animation/trajectory off-board jumps remain unsupported.
 
 Preview 4 groups Player into Tricks / Movement / Off-board / Physics, moves bindings/presets to Home, adds native Off-board Speed, horizontal Air Control (keyboard/controller) and local movement Gravity Multiplier, and replaces the sampled off-board jump trigger with native ground-to-falling detection. Stronger Force No Fall adds 26 bad/upside-down/squashed landing and collision threshold overrides. Individual resets and old settings migration are included. These controls are experimental and need gameplay testing.
 

@@ -1,4 +1,4 @@
-# Partvision's ReSkate Trainer - 0.4.0 preview 4
+# Partvision's ReSkate Trainer - 0.4.0 preview 5
 
 For ReSkate 1.0.6 and Skate Steam build 25414733. Development preview; new gameplay behavior has not been playtested.
 
@@ -12,6 +12,10 @@ For ReSkate 1.0.6 and Skate Steam build 25414733. Development preview; new gamep
 The installer validates the supported game and package hashes, and backs up your DLL/launcher under `EarlyTrainerBackups`. Default folder: `C:\Program Files (x86)\Steam\steamapps\common\Skate`. This is a custom ReSkate DLL and matching launcher, not a Mods-tab package. `Restore.ps1` restores a selected backup. `Install.ps1 -VerifyOnly` checks compatibility without installing.
 
 ## What's new
+
+Preview 5 fixes a native movement write/validation bug that caused Off-board Speed and Gravity Multiplier to undo themselves before the game read them. It also preserves the local player's applied indicators when another physics core runs, reads air control's current owner/state directly, and connects the jump indicator to successful native takeoffs. Per-control wait reasons and a local physics step counter help distinguish the required state from an actual update failure.
+
+The movement regression check now reproduces the old failure using the actual SourceReader and writable memory, and confirms the native consumer sees corrected speed/gravity values before exact restoration. This is an offline check; the new DLL still needs an in-game test. Standard animation/trajectory off-board jumps remain unsupported, and are now identified in the status.
 
 - Player has **Tricks / Movement / Off-board / Physics** pages. Keybinds and presets are on Home.
 - **Off-board Speed:** scales native desired walking/running velocity while grounded; does not multiply accumulated velocity every frame. Drag 0.25-5x; numeric entry up to 20x.
