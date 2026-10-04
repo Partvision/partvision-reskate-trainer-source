@@ -415,3 +415,10 @@ These overlays include:
 - Performance Diagnostics Overlay
 
 Keeping these systems separate allows each one to be designed specifically for its intended use.
+
+
+## 0.4 development status - preview 4
+
+Player is grouped into Tricks, Movement, Off-board and Physics. Native off-board desired speed, local movement gravity and horizontal air steering are implemented as experimental solo controls with values, bindings and individual reset. No Fall adds 26 landing/collision tuning overrides to native bail filtering. Off-board jump height now uses a native ground-to-falling edge rather than wall-clock movement detection.
+
+The release gate remains open: animation/trajectory off-board jumps and repeated board kickflips still need implementation, infinite footplant chaining needs verification, and new native behavior needs in-game collision/landing/respawn testing. The body-flip constraint's supported default is already off. Build/config/field reset/UI and movement-math checks pass; they do not replace a game test. Full controller feature bindings/menu navigation remain later work.

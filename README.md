@@ -1,10 +1,10 @@
 # Partvision's ReSkate Trainer
 
-Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview3**.
+Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview4**.
 
 ## Downloads
 
-- [Installer package — 0.4 preview 3](Partvision-ReSkate-Trainer-0.4-preview3.zip)
+- [Installer package — 0.4 preview 4](Partvision-ReSkate-Trainer-0.4-preview4.zip)
 - [Complete corresponding source](Partvision-ReSkate-Trainer-source.zip)
 - [Installation, controls and limitations](INSTALL.md)
 - [Windows build instructions](BUILD-PARTVISION.md)
@@ -12,6 +12,8 @@ Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.
 The source archive contains the complete modified ReSkate project, trainer code, build files, dependency sources, license notices and roadmap. Extract it before building. The source is currently stored as an archive in this repository.
 
 ## Current features
+
+Preview 4 groups Player into Tricks / Movement / Off-board / Physics, moves bindings/presets to Home, adds native Off-board Speed, horizontal Air Control (keyboard/controller) and local movement Gravity Multiplier, and replaces the sampled off-board jump trigger with native ground-to-falling detection. Stronger Force No Fall adds 26 bad/upside-down/squashed landing and collision threshold overrides. Individual resets and old settings migration are included. These controls are experimental and need gameplay testing.
 
 Preview 3 adds Force No Fall to Player using native No Bail protection, an optional Hold/Toggle keybind and reset that restores the prior preference. Existing bindings migrate. Collision, hard-landing and failed-trick behavior still needs an in-game test.
 
@@ -25,7 +27,7 @@ Player overrides are solo-only. Local rendering controls are intended to work in
 
 ## New roadmap
 
-[ROADMAP.md](ROADMAP.md) defines the updated 0.4–1.0 plan. 0.4 is now in progress: the first Tricks & Movement controls, UI scaling and per-feature resets are in the preview. Off-Board Speed, general Gravity Multiplier, Air Control, broader reset/indicator coverage and in-game validation remain pending. Controller cameras, visuals, physics, server capabilities, gameplay overlays and controller UI follow in later milestones. Planned features are not yet implemented.
+[ROADMAP.md](ROADMAP.md) defines the updated 0.4–1.0 plan. 0.4 is now in progress: the first Tricks & Movement controls, UI scaling and per-feature resets are in the preview. Off-Board Speed, local movement Gravity Multiplier and Air Control are now experimental controls. Animation/trajectory jump support, repeated board flips, infinite footplant chaining verification and in-game validation remain pending. Controller cameras, visuals, physics, server capabilities, gameplay overlays and controller UI follow in later milestones. Planned features are not yet implemented.
 
 ## Credits and license
 
