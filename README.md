@@ -1,10 +1,10 @@
 # Partvision's ReSkate Trainer
 
-Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview5**.
+Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.4.0-preview6**.
 
 ## Downloads
 
-- [Installer package — 0.4 preview 5](Partvision-ReSkate-Trainer-0.4-preview5.zip)
+- [Installer package — 0.4 preview 6](Partvision-ReSkate-Trainer-0.4-preview6.zip)
 - [Complete corresponding source](Partvision-ReSkate-Trainer-source.zip)
 - [Installation, controls and limitations](INSTALL.md)
 - [Windows build instructions](BUILD-PARTVISION.md)
@@ -12,6 +12,8 @@ Custom ReSkate 1.0.6 build for Skate Steam build 25414733. Current preview: **0.
 The source archive contains the complete modified ReSkate project, trainer code, build files, dependency sources, license notices and roadmap. Extract it before building. The source is currently stored as an archive in this repository.
 
 ## Current features
+
+Preview 6 moves temporary movement overrides to the actual native update (the previous phase ran after movement), replaces absolute-position scaling with root-relative walking targets and matching body velocity, and applies local airborne gravity compensation and steering through the working burst phase. Includes movement diagnostics and a regression against Skate.exe's real dispatch chain. In-game validation is pending; normal animation/trajectory off-board jumps remain unsupported.
 
 Preview 5 fixes Off-board Speed / Gravity cancelling their own native writes, prevents unrelated physics cores from clearing local feedback, uses current local state for air control, and fixes the jump indicator. Per-control wait reasons and physics-step counts are now shown. The new native-memory regression reproduces the old bug and verifies corrected consumption/restoration. Gameplay validation is still pending; animation/trajectory off-board jumps remain unsupported.
 

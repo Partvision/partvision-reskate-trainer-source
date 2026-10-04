@@ -1,4 +1,4 @@
-# Partvision's ReSkate Trainer - 0.4.0 preview 5
+# Partvision's ReSkate Trainer - 0.4.0 preview 6
 
 For ReSkate 1.0.6 and Skate Steam build 25414733. Development preview; new gameplay behavior has not been playtested.
 
@@ -13,14 +13,23 @@ The installer validates the supported game and package hashes, and backs up your
 
 ## What's new
 
-Preview 5 fixes a native movement write/validation bug that caused Off-board Speed and Gravity Multiplier to undo themselves before the game read them. It also preserves the local player's applied indicators when another physics core runs, reads air control's current owner/state directly, and connects the jump indicator to successful native takeoffs. Per-control wait reasons and a local physics step counter help distinguish the required state from an actual update failure.
+Preview 6 corrects the physics phase used by the new movement controls. The old hook ran the later post-update phase, where walking/falling substates do no movement work. Gravity now wraps the verified movement update, and airborne body velocities receive the local gravity difference through the same late path as Single burst.
 
-The movement regression check now reproduces the old failure using the actual SourceReader and writable memory, and confirms the native consumer sees corrected speed/gravity values before exact restoration. This is an offline check; the new DLL still needs an in-game test. Standard animation/trajectory off-board jumps remain unsupported, and are now identified in the status.
+Off-board Speed now scales the final walking target's displacement relative to the current skater root and supplies matching skeleton XZ velocity. It no longer multiplies absolute world-position fields. Air steering uses the same guarded late body-velocity path, with an input-access fix and a once-per-simulation-step guard. Movement diagnostics show target counts, native gravity and steering input. Native animation/trajectory jump states are explicitly labeled UNSUPPORTED STATE.
+
+The new regression checks Skate.exe's actual vtable dispatch, reproduces the old no-op phase, and tests position-independent walking and gravity compensation. This is still not an in-game playtest. Normal animation/trajectory off-board jumps remain unsupported.
+
+### Suggested in-game checks
+
+Press End to reset between checks and test one control at a time, with the menu closed:
+1. Off-board Speed at 2x: walk/run on foot and compare the movement.
+2. Gravity at 0.25x: ollie on the board and compare airtime. Values above 1 make gravity stronger, so setting it to maximum shortens airtime.
+3. Air Control at 30: ollie, then hold left/right using WASD or the left stick.
 
 - Player has **Tricks / Movement / Off-board / Physics** pages. Keybinds and presets are on Home.
-- **Off-board Speed:** scales native desired walking/running velocity while grounded; does not multiply accumulated velocity every frame. Drag 0.25-5x; numeric entry up to 20x.
+- **Off-board Speed:** scales final walking displacement and matching skeleton velocity while grounded. Drag 0.25-5x; numeric entry up to 20x.
 - **Air Control:** adds horizontal acceleration while riding airborne, with WASD or the controller's left stick. Direction follows the skater. Drag 0-30 m/s²; numeric entry up to 100. No added vertical thrust.
-- **Gravity Multiplier:** scales local skater movement gravity during the native state update. Drag 0-2x; numeric entry up to 5x. 0 disables that movement gravity, 1 is normal. Shared world gravity, loose objects, and ragdoll physics are unchanged; native animation paths and contacts can still constrain movement.
+- **Gravity Multiplier:** scales local skater movement gravity during the actual movement phase and applies matching airborne body acceleration. Drag 0-2x; numeric entry up to 5x. 0 disables that movement gravity, 1 is normal. Shared world gravity, loose objects, and ragdoll physics are unchanged; native animation paths and contacts can still constrain movement.
 - **Off-board Jump Height:** now detects native ground-to-falling takeoff and scales its upward speed once. Drag 0.25-5x; numeric entry up to 20x. Animation/trajectory-driven jumps and hippy jumps are not yet supported. The displayed factor is not a measured height guarantee.
 - **Force No Fall:** combines native bail-request filtering with 26 landing/collision tuning overrides: bad/upside-down/squashed checks off, impact force/speed/acceleration thresholds raised. Intended for high-speed collisions and darkslide landings; exact behavior needs an in-game test.
 - New movement keybinds, individual resets, ARMED/APPLIED indicators and CUSTOM value markers. Schema 5 preserves existing preview 1-3 values/bindings; new switches begin disabled.
@@ -64,7 +73,7 @@ Right-click trainer sliders for manual entry. Enter or Apply commits; Cancel or 
 
 No Fall, tricks and new movement hotkeys default to Unbound. Configure Hold/Toggle in **Home > Keybinds and presets**. Escape cancels recording. Duplicate/reserved bindings are rejected. Other game bindings are not exhaustively checked. Air steering supports controller input; full controller menu navigation and controller feature bindings remain later work.
 
-Hotkeys pause in menus/chat and outside the game. Hold adds temporary activation; the checkbox stays active until switched off. End clears switches and suppresses still-held keys until release. Movement requests expire when local updates stop; respawns resolve a fresh local owner. Native velocity inputs and gravity restore after each state update, and do not undo a value replaced by a native writer.
+Hotkeys pause in menus/chat and outside the game. Hold adds temporary activation; the checkbox stays active until switched off. End clears switches and suppresses still-held keys until release. Movement requests expire when local updates stop; respawns resolve a fresh local owner. Temporary gravity values restore after each movement update without undoing native writes. Walking/air/body corrections are computed for the current simulation step, with duplicate late calls suppressed.
 
 Settings/presets: `%LOCALAPPDATA%\ReSkate\PartvisionTrainer\settings.json`. Player values and bindings persist; activation switches start off. Emergency reset restores visual/performance values changed through this trainer during the session. Player presets do not include rendering controls. Exiting without reset can preserve ReSkate's own saved visual preferences.
 
